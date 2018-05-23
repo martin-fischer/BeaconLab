@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Navigation</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-card *ngIf="currentPosition">
+    <ion-card-header>Position</ion-card-header>
+    <ion-card-content>
+      <p>X: {{currentPosition.x | number:'1.2-2'}}</p>
+      <p>Y: {{currentPosition.y | number:'1.2-2'}}</p>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-list>
+    <ion-item *ngFor="let beacon of beaconList">
+      <ion-thumbnail item-start>
+        <img [src]="beacon.thumbnail">
+      </ion-thumbnail>
+      <h2>{{beacon.description}} {{beacon.instanceId}}</h2>
+      <p>Distanz: {{beacon.distance | number:'1.2-2'}} m</p>
+    </ion-item>
+  </ion-list>
+
+</ion-content>

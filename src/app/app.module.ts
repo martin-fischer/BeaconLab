@@ -3,6 +3,7 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import {InAppBrowser} from "@ionic-native/in-app-browser";
 import {NativeAudio} from "@ionic-native/native-audio";
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
+import {NavigationPage} from "../pages/navigation/navigation";
 import {BeaconScannerService} from "../pages/services/beaconscanner.service";
 import {SettingsPage} from "../pages/settings/settings";
 
@@ -18,7 +19,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     MyApp,
     HomePage,
     ListPage,
-    SettingsPage
+    SettingsPage,
+    NavigationPage
   ],
   imports: [
     BrowserModule,
@@ -29,7 +31,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     MyApp,
     HomePage,
     ListPage,
-    SettingsPage
+    SettingsPage,
+    NavigationPage
   ],
   providers: [
     StatusBar,

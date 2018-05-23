@@ -1,5 +1,6 @@
 import {Injectable} from "@angular/core";
 import {Platform} from "ionic-angular";
+import {BeaconCoordinate} from "./datatypes/coordinate.type";
 import _ from "lodash";
 
 declare var evothings: any;
@@ -126,5 +127,74 @@ export class BeaconScannerService {
 
   isMintBeacon(data): boolean {
     return data.instanceId === this.MINT_BEACON
+  }
+
+  isInReach(data): boolean {
+    return data.distance < 2;
+  }
+
+  calculateCurrentPosition(beaconList: Array<any>): BeaconCoordinate {
+    let currentPosition: BeaconCoordinate = new BeaconCoordinate();
+
+    // static coordinates for our 3 beacons
+    let mint_x = 0;
+    let mint_y = 0;
+
+    let ice_x = 10;
+    let ice_y = 0;
+
+    let blueberry_x = 3;
+    let blueberry_y = 3;
+
+    // get distances from each beacon
+    let mint_d = 0;
+    let ice_d = 0;
+    let blueberry_d = 0;
+
+    _.forEach(beaconList, (beacon) => {
+      if (this.isIceBeacon(beacon)) {
+        ice_d = beacon.distance;
+      } else if (this.isBlueberryBeacon(beacon)) {
+        blueberry_d = beacon.distance;
+      } else if (this.isMintBeacon(beacon)) {
+        mint_d = beacon.distance;
+      }
+    });
+
+    //alert('Distances of beacons: ' + mint_d + ',' + ice_d + ',' + blueberry_d);
+
+    if (mint_d > 0 && ice_d > 0 && blueberry_d > 0) {
+
+      let A = (mint_x * mint_x) + (mint_y * mint_y) - (mint_d * mint_d);
+      let B = (ice_x * ice_x) + (ice_y * ice_y) - (ice_d * ice_d);
+      let C = (blueberry_x * blueberry_x) + (blueberry_y * blueberry_y) - (blueberry_d * blueberry_d);
+
+      let X32 = blueberry_x - ice_x;
+      let X13 = mint_x - blueberry_x;
+      let X21 = ice_x - mint_x;
+      let Y32 = blueberry_y - ice_y;
+      let Y13 = mint_y - blueberry_y;
+      let Y21 = ice_y - mint_y;
+
+      // based on the formula from http://cdn.intechweb.org/pdfs/13525.pdf
+      let x = ((A * Y32) + (B * Y13) + (C * Y21)) / (2 * ((mint_x * Y32) + (ice_x * Y13) + (blueberry_x * Y21)));
+      let y = ((A * X32) + (B * X13) + (C * X21)) / (2 * ((mint_y * X32) + (ice_y * X13) + (blueberry_y * X21)));
+
+      //x = Math.round(x);
+      //y = Math.round(y);
+
+
+      if (x == -Infinity || isNaN(x) || y == -Infinity || isNaN(y)) {
+        currentPosition.x = mint_x;
+        currentPosition.y = mint_y;
+      }
+
+      currentPosition.x = x;
+      currentPosition.y = y;
+
+      //alert('current position: ' + JSON.stringify(currentPosition));
+
+      return (currentPosition);
+    }
   }
 }
