@@ -49,13 +49,26 @@ export class BeaconScannerService {
         data.instanceId = this.uint8ArrayToString(data.bid);
         data.timestamp = Date.now();
         data.distance = evothings.eddystone.calculateAccuracy(data.txPower, data.rssi);
-        data.voucherBeacon = this.isVoucherBeacon(data) && this.isInReach(data);
-        data.paintingBeacon = this.isPaintingBeacon(data) && this.isInReach(data);
+        data.voucherBeacon = this.isIceBeacon(data) && this.isInReach(data);
+        data.paintingBeacon = this.isBlueberryBeacon(data) && this.isInReach(data);
+        this.addThumbnailAndDescription(data);
         this.beaconData[data.address] = data;
 
-        // this.changeDetector.detectChanges();
       })
     });
+  }
+
+  private addThumbnailAndDescription(data) {
+    if (this.isBlueberryBeacon(data)) {
+      data.thumbnail = 'assets/imgs/blueberry.jpg';
+      data.description = 'BLUEBERRY';
+    } else if (this.isMintBeacon(data)) {
+      data.thumbnail = 'assets/imgs/mint.jpg';
+      data.description = 'MINT';
+    } else if (this.isIceBeacon(data)) {
+      data.thumbnail = 'assets/imgs/ice.jpg';
+      data.description = 'ICE';
+    }
   }
 
   stopScanningForBeacons(): void {
@@ -77,12 +90,16 @@ export class BeaconScannerService {
     return result.trim();
   }
 
-  isVoucherBeacon(data): boolean {
+  isIceBeacon(data): boolean {
     return data.instanceId === this.ICE_BEACON;
   }
 
-  isPaintingBeacon(data): boolean {
+  isBlueberryBeacon(data): boolean {
     return data.instanceId === this.BLUEBERRY_BEACON;
+  }
+
+  isMintBeacon(data): boolean {
+    return data.instanceId === this.MINT_BEACON
   }
 
   isInReach(data): boolean {

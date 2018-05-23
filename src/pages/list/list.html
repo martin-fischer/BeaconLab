@@ -3,21 +3,18 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>List</ion-title>
+    <ion-title>Meine Beacons</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
   <ion-list>
-    <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">
-      <ion-icon [name]="item.icon" item-start></ion-icon>
-      {{item.title}}
-      <div class="item-note" item-end>
-        {{item.note}}
-      </div>
-    </button>
+    <ion-item *ngFor="let beacon of getBeaconList()">
+      <ion-thumbnail item-start>
+        <img [src]="beacon.thumbnail">
+      </ion-thumbnail>
+      <h2>{{beacon.description}} {{beacon.instanceId}}</h2>
+      <p>{{beacon.distance}}</p>
+    </ion-item>
   </ion-list>
-  <div *ngIf="selectedItem" padding>
-    You navigated here from <b>{{selectedItem.title}}</b>
-  </div>
 </ion-content>
