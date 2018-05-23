@@ -7,9 +7,10 @@
   </ion-navbar>
 </ion-header>
 
+
 <ion-content>
   <ion-list>
-    <ion-item *ngFor="let beacon of getBeaconList()">
+    <ion-item *ngFor="let beacon of beaconList">
       <ion-thumbnail item-start>
         <img [src]="beacon.thumbnail">
       </ion-thumbnail>

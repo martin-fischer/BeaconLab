@@ -1,5 +1,6 @@
 import {Injectable} from "@angular/core";
 import {Platform} from "ionic-angular";
+import _ from "lodash";
 
 declare var evothings: any;
 declare var cordova: any;
@@ -40,6 +41,22 @@ export class BeaconScannerService {
     }
   }
 
+  sortBeaconList(beacons) {
+    _.forEach(beacons, (beacon) => {
+      beacon.mappedBeaconRSSI = this.mapBeaconRSSI(beacon.rssi);
+    });
+
+    return _.sortBy(beacons, 'mappedBeaconRSSI').reverse();
+  }
+
+  // see https://github.com/evothings/cordova-eddystone/blob/master/example/index.html
+  // Map the RSSI value to a value between 1 and 100.
+  private mapBeaconRSSI(rssi) {
+    if (rssi >= 0) return 1; // Unknown RSSI maps to 1.
+    if (rssi < -100) return 100; // Max RSSI
+    return 100 + rssi;
+  }
+
   startScanningForBeacons() {
     this.platform.ready().then(() => {
       this.scanningInProgress = true;
@@ -61,8 +78,6 @@ export class BeaconScannerService {
         data.instanceId = this.uint8ArrayToString(data.bid);
         data.timestamp = Date.now();
         data.distance = evothings.eddystone.calculateAccuracy(data.txPower, data.rssi);
-        data.voucherBeacon = this.isIceBeacon(data) && this.isInReach(data); // TODO move me to the corresponding page component
-        data.paintingBeacon = this.isBlueberryBeacon(data) && this.isInReach(data); // TODO move me to the corresponding page component
         this.addThumbnailAndDescription(data);
         this.beaconData[data.address] = data;
       })
@@ -111,9 +126,5 @@ export class BeaconScannerService {
 
   isMintBeacon(data): boolean {
     return data.instanceId === this.MINT_BEACON
-  }
-
-  isInReach(data): boolean {
-    return data.distance < 2;
   }
 }
