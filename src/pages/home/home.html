@@ -8,12 +8,7 @@
 </ion-header>
 
 <ion-content padding>
-  <button ion-button (click)="startScanningForBeacons()" [disabled]="scanningInProgress">Start Scan</button>
-  <button ion-button (click)="stopScanningForBeacons()" [disabled]="!scanningInProgress">Stop Scan</button>
-
   <ion-list *ngFor="let beacon of getBeaconList()">
-
-
 
     <ion-item *ngIf="beacon.voucherBeacon">
       <ion-thumbnail item-start>

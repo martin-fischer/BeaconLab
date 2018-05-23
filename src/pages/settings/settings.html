@@ -1,0 +1,15 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Einstellungen</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-label>Beacon Scanning</ion-label>
+    <ion-toggle [(ngModel)]="scanningInProgress" (ionChange)="updateScanningState()"></ion-toggle>
+  </ion-item>
+</ion-content>
