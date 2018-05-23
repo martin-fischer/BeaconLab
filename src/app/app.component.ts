@@ -5,6 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
+import {NavigationPage} from "../pages/navigation/navigation";
 import {SettingsPage} from "../pages/settings/settings";
 
 @Component({
@@ -24,6 +25,7 @@ export class MyApp {
     this.pages = [
       { title: 'Mobi Kunst Guide', component: HomePage },
       { title: 'Beacon Liste', component: ListPage },
+      { title: 'Navigation', component: NavigationPage },
       { title: 'Einstellungen', component: SettingsPage }
     ];
 
