@@ -13,9 +13,17 @@
     <img [src]="nearestBeacon.thumbnail">
     <h2>{{nearestBeacon.objectTitle}}</h2>
     <h2>{{nearestBeacon.objectPainter}}</h2>
-    <button ion-button clear item-end (click)="showPaintingInfo(nearestBeacon.objectURL)">Lesen</button>
-    <button ion-button clear item-end (click)="playPaintingInfo(nearestBeacon.objectId, nearestObject.soundFile)" *ngIf="!playingInProgress"><ion-icon name="play"></ion-icon></button>
-    <button ion-button clear item-end (click)="stopPaintingInfo(nearestBeacon.objectId)" *ngIf="playingInProgress"><ion-icon name="square"></ion-icon></button>
+    <button ion-button icon-start (click)="showPaintingInfo(nearestBeacon.objectURL)">
+      <ion-icon name="paper"></ion-icon>
+      Lesen
+    </button>
+    <br/><br>
+    <button ion-button (click)="playPaintingInfo(nearestBeacon.objectId, nearestObject.soundFile)" *ngIf="!playingInProgress">
+      <ion-icon name="play"></ion-icon>
+    </button>
+    <button ion-button (click)="stopPaintingInfo(nearestBeacon.objectId)" *ngIf="playingInProgress">
+      <ion-icon name="square"></ion-icon>
+    </button>
   </ng-container>
 
   <ng-template #noBaconFound>

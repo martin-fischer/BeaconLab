@@ -22,6 +22,7 @@ export class HomePage {
     if (this.beaconScannerService.scanningInProgress) {
       this.beaconScannerService.startScanningForBeacons();
     }
+    this.loadNearestBeacon();
 
     // Timer that refreshes the beacon list.
     setInterval(() => this.loadNearestBeacon(), 1000);

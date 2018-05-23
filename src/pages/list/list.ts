@@ -17,6 +17,8 @@ export class ListPage {
       this.beaconScannerService.startScanningForBeacons();
     }
 
+    this.getBeaconList();
+
     // Timer that refreshes the beacon list.
     setInterval(() => this.getBeaconList(), 1000);
   }
