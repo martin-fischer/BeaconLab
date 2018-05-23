@@ -22,7 +22,7 @@ export class ListPage {
     }
 
     // Timer that refreshes the beacon list.
-    setInterval(this.getBeaconList, 2000);
+    setInterval(this.getBeaconList, 1000);
   }
 
   getBeaconList() {

@@ -18,8 +18,10 @@ export class BeaconScannerService {
   constructor(private platform: Platform) {}
 
   getBeaconList() {
-    let beacons = this.beaconData;
 
+    this.removeOldBeacons();
+
+    let beacons = this.beaconData;
     var beaconList = [];
     for (var key in beacons) {
       beaconList.push(beacons[key]);
@@ -27,6 +29,16 @@ export class BeaconScannerService {
     return beaconList;
   }
 
+  removeOldBeacons() {
+    var timeNow = Date.now();
+    for (var key in this.beaconData) {
+      // Only show beacons updated during the last 10 seconds.
+      var beacon = this.beaconData[key];
+      if (beacon.timestamp + 10000 < timeNow) {
+        delete this.beaconData[key];
+      }
+    }
+  }
 
   startScanningForBeacons() {
     this.platform.ready().then(() => {
@@ -49,11 +61,10 @@ export class BeaconScannerService {
         data.instanceId = this.uint8ArrayToString(data.bid);
         data.timestamp = Date.now();
         data.distance = evothings.eddystone.calculateAccuracy(data.txPower, data.rssi);
-        data.voucherBeacon = this.isIceBeacon(data) && this.isInReach(data);
-        data.paintingBeacon = this.isBlueberryBeacon(data) && this.isInReach(data);
+        data.voucherBeacon = this.isIceBeacon(data) && this.isInReach(data); // TODO move me to the corresponding page component
+        data.paintingBeacon = this.isBlueberryBeacon(data) && this.isInReach(data); // TODO move me to the corresponding page component
         this.addThumbnailAndDescription(data);
         this.beaconData[data.address] = data;
-
       })
     });
   }
