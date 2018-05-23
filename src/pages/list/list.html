@@ -14,7 +14,10 @@
         <img [src]="beacon.thumbnail">
       </ion-thumbnail>
       <h2>{{beacon.description}} {{beacon.instanceId}}</h2>
-      <p>{{beacon.distance}}</p>
+      <p>Distanz: {{beacon.distance | number:'1.2-2'}} m</p>
+      <p>Temperatur: {{beacon.temperature}} ° C</p>
+      <p>Signalstärke: {{beacon.rssi}} dBm</p>
+      <p>Batterie: {{beacon.voltage / 1000 | number:'1.2-2'}} V</p>
     </ion-item>
   </ion-list>
 </ion-content>
