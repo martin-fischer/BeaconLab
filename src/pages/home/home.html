@@ -18,7 +18,7 @@
       Lesen
     </button>
     <br/><br>
-    <button ion-button (click)="playPaintingInfo(nearestBeacon.objectId, nearestObject.soundFile)" *ngIf="!playingInProgress">
+    <button ion-button (click)="playPaintingInfo(nearestBeacon.objectId, nearestBeacon.soundFile)" *ngIf="!playingInProgress">
       <ion-icon name="play"></ion-icon>
     </button>
     <button ion-button (click)="stopPaintingInfo(nearestBeacon.objectId)" *ngIf="playingInProgress">
@@ -30,20 +30,3 @@
     Kein Objekt in der Nähe.
   </ng-template>
 </ion-content>
-
-<!--
-<ion-content>
-  <ion-list>
-    <ion-item *ngFor="let beacon of getBeaconList()">
-      <ion-thumbnail item-start>
-        <img [src]="beacon.thumbnail">
-      </ion-thumbnail>
-      <h2>{{beacon.description}} {{beacon.instanceId}}</h2>
-      <p>Distanz: {{beacon.distance | number:'1.2-2'}} m</p>
-      <p>Temperatur: {{beacon.temperature}} ° C</p>
-      <p>Signalstärke: {{beacon.rssi}} dBm</p>
-      <p>Batterie: {{beacon.voltage / 1000 | number:'1.2-2'}} V</p>
-    </ion-item>
-  </ion-list>
-</ion-content>
--->

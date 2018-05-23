@@ -92,5 +92,6 @@ export class HomePage {
 
   stopPaintingInfo(id: string) {
     this.nativeAudio.stop(id).then(() => {}, () => {});
+    this.playingInProgress = false;
   }
 }
