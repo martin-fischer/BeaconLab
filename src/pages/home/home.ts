@@ -38,9 +38,10 @@ export class HomePage {
       let nearestBeacon = sortedBeacons[0];
       if (this.isBeaconInReach(nearestBeacon)) {
         this.nearestBeacon = nearestBeacon;
+      } else {
+        this.nearestBeacon = undefined;
       }
     }
-    this.nearestBeacon = undefined;
   }
 
   initializeBeaconsWithPaitingInformation(beaconList): void {
@@ -69,7 +70,7 @@ export class HomePage {
   }
 
   isBeaconInReach(beacon): boolean {
-    return beacon.distance < 3;
+    return beacon.distance < 1;
   }
 
   showPaintingInfo(url: string): void {
