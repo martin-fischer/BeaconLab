@@ -133,24 +133,21 @@ export class BeaconScannerService {
     return data.distance < 2;
   }
 
-  calculateCurrentPosition(beaconList: Array<any>): BeaconCoordinate {
+  calculateCurrentPosition(beaconList: Array<any>, blueberryPosition: BeaconCoordinate, mintPosition: BeaconCoordinate, icePosition: BeaconCoordinate): BeaconCoordinate {
     let currentPosition: BeaconCoordinate = new BeaconCoordinate();
 
     // static coordinates for our 3 beacons
-    let mint_x = 0;
-    let mint_y = 0;
-
-    let ice_x = 10;
-    let ice_y = 0;
-
-    let blueberry_x = 3;
-    let blueberry_y = 3;
+    let blueberry_x = blueberryPosition.x;
+    let blueberry_y = blueberryPosition.y;
+    let blueberry_d = 0;
+    let mint_x = mintPosition.x;
+    let mint_y = mintPosition.y;
+    let mint_d = 0;
+    let ice_x = icePosition.x;
+    let ice_y = icePosition.y;
+    let ice_d = 0;
 
     // get distances from each beacon
-    let mint_d = 0;
-    let ice_d = 0;
-    let blueberry_d = 0;
-
     _.forEach(beaconList, (beacon) => {
       if (this.isIceBeacon(beacon)) {
         ice_d = beacon.distance;
@@ -160,8 +157,6 @@ export class BeaconScannerService {
         mint_d = beacon.distance;
       }
     });
-
-    //alert('Distances of beacons: ' + mint_d + ',' + ice_d + ',' + blueberry_d);
 
     if (mint_d > 0 && ice_d > 0 && blueberry_d > 0) {
 
@@ -180,10 +175,6 @@ export class BeaconScannerService {
       let x = ((A * Y32) + (B * Y13) + (C * Y21)) / (2 * ((mint_x * Y32) + (ice_x * Y13) + (blueberry_x * Y21)));
       let y = ((A * X32) + (B * X13) + (C * X21)) / (2 * ((mint_y * X32) + (ice_y * X13) + (blueberry_y * X21)));
 
-      //x = Math.round(x);
-      //y = Math.round(y);
-
-
       if (x == -Infinity || isNaN(x) || y == -Infinity || isNaN(y)) {
         currentPosition.x = mint_x;
         currentPosition.y = mint_y;
@@ -191,8 +182,6 @@ export class BeaconScannerService {
 
       currentPosition.x = x;
       currentPosition.y = y;
-
-      //alert('current position: ' + JSON.stringify(currentPosition));
 
       return (currentPosition);
     }

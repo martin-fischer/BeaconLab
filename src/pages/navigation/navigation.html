@@ -9,6 +9,15 @@
 
 <ion-content padding>
 
+  <ion-card>
+    <ion-card-header>
+      Current position
+    </ion-card-header>
+    <ion-card-content>
+      <canvas #bubbleCanvas></canvas>
+    </ion-card-content>
+  </ion-card>
+
   <ion-card *ngIf="currentPosition">
     <ion-card-header>Position</ion-card-header>
     <ion-card-content>
