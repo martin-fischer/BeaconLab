@@ -10,22 +10,25 @@
 
 <ion-content padding>
   <ng-container *ngIf="nearestBeacon; else noBaconFound">
-    <img [src]="nearestBeacon.thumbnail">
+    <img [src]="nearestBeacon.objectImageFile" style="width:100%;">
     <h2>{{nearestBeacon.objectTitle}}</h2>
-    <h2>{{nearestBeacon.objectPainter}}</h2>
+    <p><b>Künstler:</b> {{nearestBeacon.objectPainter}}</p>
+    <p><b>Stil:</b> {{nearestBeacon.objectArtStyle}}</p>
     <button ion-button icon-start (click)="showPaintingInfo(nearestBeacon.objectURL)">
       <ion-icon name="paper"></ion-icon>
-      Lesen
+      Info lesen
     </button>
-    <br/><br>
-    <button ion-button (click)="playPaintingInfo(nearestBeacon.objectId, nearestBeacon.soundFile)" *ngIf="!playingInProgress">
+    <button ion-button icon-start (click)="playPaintingInfo(nearestBeacon.objectId, nearestBeacon.objectSoundFile)" *ngIf="!playingInProgress">
       <ion-icon name="play"></ion-icon>
+      Info abspielen
     </button>
-    <button ion-button (click)="stopPaintingInfo(nearestBeacon.objectId)" *ngIf="playingInProgress">
+    <button ion-button icon-start (click)="stopPaintingInfo(nearestBeacon.objectId)" *ngIf="playingInProgress">
       <ion-icon name="square"></ion-icon>
+      Info stoppen
     </button>
   </ng-container>
 
+  <br/>
   <ng-template #noBaconFound>
     Kein Objekt in der Nähe.
   </ng-template>
