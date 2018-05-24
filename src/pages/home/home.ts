@@ -4,11 +4,15 @@ import {NativeAudio} from "@ionic-native/native-audio";
 import _ from "lodash";
 import {BeaconScannerService} from "../services/beaconscanner.service";
 
+declare var cordova: any;
+
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
 export class HomePage {
+
+  notificationFired: boolean = false;
 
   nearestBeaconQueue = [];
   nearestBeacon;
@@ -49,6 +53,19 @@ export class HomePage {
       }
 
       this.nearestBeacon = this.getNearestBeaconFromQueue(this.nearestBeaconQueue);
+      this.notifyIfAppIsInBackground();
+    }
+  }
+
+  notifyIfAppIsInBackground() {
+    if (!this.notificationFired && this.beaconScannerService.appPaused) {
+      cordova.plugins.notification.local.schedule({
+        title: 'Bildinformation anzeigen',
+        text: this.nearestBeacon.objectTitle + ' (' + this.nearestBeacon.objectPainter + ')',
+        attachments: ['file://' + this.nearestBeacon.objectImageFile],
+        foreground: true
+      });
+      this.notificationFired = true;
     }
   }
 

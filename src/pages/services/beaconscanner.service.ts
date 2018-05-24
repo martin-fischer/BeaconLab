@@ -17,6 +17,8 @@ export class BeaconScannerService {
   isInForeground: boolean = true;
   beaconData: Map<string, any> = new Map();
 
+  appPaused: boolean = false;
+
   constructor(private platform: Platform) {}
 
   getBeaconList() {

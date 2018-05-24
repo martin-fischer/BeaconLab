@@ -6,6 +6,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import {NavigationPage} from "../pages/navigation/navigation";
+import {BeaconScannerService} from "../pages/services/beaconscanner.service";
 import {SettingsPage} from "../pages/settings/settings";
 
 @Component({
@@ -18,7 +19,7 @@ export class MyApp {
 
   pages: Array<{title: string, component: any}>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, private beaconScannerService: BeaconScannerService) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
@@ -37,6 +38,14 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+    });
+
+    this.platform.pause.subscribe(() => {
+      this.beaconScannerService.appPaused = true;
+    });
+
+    this.platform.resume.subscribe(() => {
+      this.beaconScannerService.appPaused = false;
     });
   }
 
