@@ -15,7 +15,7 @@ export class NavigationPage {
   currentPosition: BeaconCoordinate = new BeaconCoordinate();
   beaconList;
   blueberryPosition: BeaconCoordinate = {x: 0, y:0};
-  mintPosition: BeaconCoordinate = {x: 17, y:0};
+  mintPosition: BeaconCoordinate = {x: 7, y:1};
   icePosition: BeaconCoordinate = {x: 5, y:5};
 
   constructor(private beaconScannerService: BeaconScannerService) {
@@ -54,10 +54,10 @@ export class NavigationPage {
       data: {
         datasets: [{
           data: [
-            {x: 0, y: 0, r: 1},
-            {x: 17, y: 0, r: 1},
-            {x: 0, y: 7, r: 1},
-            {x: 17, y: 7, r: 1},
+            {x: 0, y: 0, r: 2},
+            {x: 17, y: 0, r: 2},
+            {x: 0, y: 7, r: 2},
+            {x: 17, y: 7, r: 2},
             {x: this.blueberryPosition.x, y: this.blueberryPosition.y, r: 5},
             {x: this.mintPosition.x, y: this.mintPosition.y, r: 5},
             {x: this.icePosition.x, y: this.icePosition.y, r: 5},

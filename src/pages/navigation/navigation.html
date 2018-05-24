@@ -28,21 +28,28 @@
     </ion-item>
   </ion-list>
 
-  <ion-card>
-    <ion-card-header>
-      Set position of beacons [m]
-    </ion-card-header>
-    <ion-card-content>
-      <h3>Blueberry</h3>
-      <p>X: <input [(ngModel)]="blueberryPosition.x"></p>
-      <p>Y: <input [(ngModel)]="blueberryPosition.y"></p>
-      <h3>Mint</h3>
-      <p>X: <input [(ngModel)]="mintPosition.x"></p>
-      <p>Y: <input [(ngModel)]="mintPosition.y"></p>
-      <h3>Ice</h3>
-      <p>X: <input [(ngModel)]="icePosition.x"></p>
-      <p>Y: <input [(ngModel)]="icePosition.y"></p>
-    </ion-card-content>
-  </ion-card>
+  <ion-list>
+    <ion-list-header>
+      Enter positions of beacons [m]
+    </ion-list-header>
+    <ion-item-divider>Blueberry</ion-item-divider>
+    <ion-item>
+      <ion-label color="primary">X, Y:</ion-label>
+      <ion-input type="number" placeholder="Meter" [(ngModel)]="blueberryPosition.x"></ion-input>
+      <ion-input type="number" placeholder="Meter" [(ngModel)]="blueberryPosition.y"></ion-input>
+    </ion-item>
+    <ion-item-divider>Mint</ion-item-divider>
+    <ion-item>
+      <ion-label color="primary">X, Y:</ion-label>
+      <ion-input type="number" placeholder="Meter" [(ngModel)]="mintPosition.x"></ion-input>
+      <ion-input type="number" placeholder="Meter" [(ngModel)]="mintPosition.y"></ion-input>
+    </ion-item>
+    <ion-item-divider>Ice</ion-item-divider>
+    <ion-item>
+      <ion-label color="primary">X, Y:</ion-label>
+      <ion-input type="number" placeholder="Meter" [(ngModel)]="icePosition.x"></ion-input>
+      <ion-input type="number" placeholder="Meter" [(ngModel)]="icePosition.y"></ion-input>
+    </ion-item>
+  </ion-list>
 
 </ion-content>
