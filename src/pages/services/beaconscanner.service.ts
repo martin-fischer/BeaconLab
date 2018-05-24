@@ -19,7 +19,8 @@ export class BeaconScannerService {
 
   appPaused: boolean = false;
 
-  constructor(private platform: Platform) {}
+  constructor(private platform: Platform) {
+  }
 
   getBeaconList() {
 
@@ -80,7 +81,12 @@ export class BeaconScannerService {
 
         data.instanceId = this.uint8ArrayToString(data.bid);
         data.timestamp = Date.now();
-        data.distance = evothings.eddystone.calculateAccuracy(data.txPower, data.rssi);
+        // calculate average distance of old and new value
+        if (data.distance != undefined && evothings.eddystone.calculateAccuracy(data.txPower, data.rssi) != undefined) {
+          data.distance = (data.distance + evothings.eddystone.calculateAccuracy(data.txPower, data.rssi)) / 2;
+        } else if (evothings.eddystone.calculateAccuracy(data.txPower, data.rssi) != undefined) {
+          data.distance = evothings.eddystone.calculateAccuracy(data.txPower, data.rssi);
+        }
         this.addThumbnailAndDescription(data);
         this.beaconData[data.address] = data;
       })
@@ -137,17 +143,17 @@ export class BeaconScannerService {
 
   calculateCurrentPosition(beaconList: Array<any>, blueberryPosition: BeaconCoordinate, mintPosition: BeaconCoordinate, icePosition: BeaconCoordinate): BeaconCoordinate {
     let currentPosition: BeaconCoordinate = new BeaconCoordinate();
-
-    // static coordinates for our 3 beacons
-    let blueberry_x = blueberryPosition.x;
-    let blueberry_y = blueberryPosition.y;
     let blueberry_d = 0;
+    let mint_d = 0;
+    let ice_d = 0;
+
+    /*let blueberry_x = blueberryPosition.x;
+    let blueberry_y = blueberryPosition.y;
     let mint_x = mintPosition.x;
     let mint_y = mintPosition.y;
-    let mint_d = 0;
     let ice_x = icePosition.x;
-    let ice_y = icePosition.y;
-    let ice_d = 0;
+    let ice_y = icePosition.y; */
+
 
     // get distances from each beacon
     _.forEach(beaconList, (beacon) => {
@@ -160,32 +166,52 @@ export class BeaconScannerService {
       }
     });
 
-    if (mint_d > 0 && ice_d > 0 && blueberry_d > 0) {
+    /*  if (mint_d > 0 && ice_d > 0 && blueberry_d > 0) {
 
-      let A = (mint_x * mint_x) + (mint_y * mint_y) - (mint_d * mint_d);
-      let B = (ice_x * ice_x) + (ice_y * ice_y) - (ice_d * ice_d);
-      let C = (blueberry_x * blueberry_x) + (blueberry_y * blueberry_y) - (blueberry_d * blueberry_d);
+        let A = (mint_x * mint_x) + (mint_y * mint_y) - (mint_d * mint_d);
+        let B = (ice_x * ice_x) + (ice_y * ice_y) - (ice_d * ice_d);
+        let C = (blueberry_x * blueberry_x) + (blueberry_y * blueberry_y) - (blueberry_d * blueberry_d);
 
-      let X32 = blueberry_x - ice_x;
-      let X13 = mint_x - blueberry_x;
-      let X21 = ice_x - mint_x;
-      let Y32 = blueberry_y - ice_y;
-      let Y13 = mint_y - blueberry_y;
-      let Y21 = ice_y - mint_y;
+        let X32 = blueberry_x - ice_x;
+        let X13 = mint_x - blueberry_x;
+        let X21 = ice_x - mint_x;
+        let Y32 = blueberry_y - ice_y;
+        let Y13 = mint_y - blueberry_y;
+        let Y21 = ice_y - mint_y;
 
-      // based on the formula from http://cdn.intechweb.org/pdfs/13525.pdf
-      let x = ((A * Y32) + (B * Y13) + (C * Y21)) / (2 * ((mint_x * Y32) + (ice_x * Y13) + (blueberry_x * Y21)));
-      let y = ((A * X32) + (B * X13) + (C * X21)) / (2 * ((mint_y * X32) + (ice_y * X13) + (blueberry_y * X21)));
+        // based on the formula from http://cdn.intechweb.org/pdfs/13525.pdf
+        let x = ((A * Y32) + (B * Y13) + (C * Y21)) / (2 * ((mint_x * Y32) + (ice_x * Y13) + (blueberry_x * Y21)));
+        let y = ((A * X32) + (B * X13) + (C * X21)) / (2 * ((mint_y * X32) + (ice_y * X13) + (blueberry_y * X21)));
 
-      if (x == -Infinity || isNaN(x) || y == -Infinity || isNaN(y)) {
-        currentPosition.x = mint_x;
-        currentPosition.y = mint_y;
-      }
+        if (x == -Infinity || isNaN(x) || y == -Infinity || isNaN(y)) {
+          currentPosition.x = mint_x;
+          currentPosition.y = mint_y;
+        }
 
-      currentPosition.x = x;
-      currentPosition.y = y;
+        currentPosition.x = x;
+        currentPosition.y = y;
 
-      return (currentPosition);
-    }
+        return (currentPosition);
+        */
+
+    let xa = blueberryPosition.x;
+    let ya = blueberryPosition.y;
+    let xb = mintPosition.x;
+    let yb = mintPosition.y;
+    let xc = icePosition.x;
+    let yc = icePosition.y;
+    let ra = blueberry_d;
+    let rb = mint_d;
+    let rc = ice_d;
+
+    let S = (Math.pow(xc, 2.) - Math.pow(xb, 2.) + Math.pow(yc, 2.) - Math.pow(yb, 2.) + Math.pow(rb, 2.) - Math.pow(rc, 2.)) / 2.0;
+    let T = (Math.pow(xa, 2.) - Math.pow(xb, 2.) + Math.pow(ya, 2.) - Math.pow(yb, 2.) + Math.pow(rb, 2.) - Math.pow(ra, 2.)) / 2.0;
+    let y = ((T * (xb - xc)) - (S * (xb - xa))) / (((ya - yb) * (xb - xc)) - ((yc - yb) * (xb - xa)));
+    let x = ((y * (ya - yb)) - T) / (xb - xa);
+
+    currentPosition.x = x;
+    currentPosition.y = y;
+
+    return (currentPosition);
   }
 }
