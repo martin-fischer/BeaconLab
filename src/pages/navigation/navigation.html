@@ -18,14 +18,6 @@
     </ion-card-content>
   </ion-card>
 
-  <ion-card *ngIf="currentPosition">
-    <ion-card-header>Position</ion-card-header>
-    <ion-card-content>
-      <p>X: {{currentPosition.x | number:'1.2-2'}}</p>
-      <p>Y: {{currentPosition.y | number:'1.2-2'}}</p>
-    </ion-card-content>
-  </ion-card>
-
   <ion-list>
     <ion-item *ngFor="let beacon of beaconList">
       <ion-thumbnail item-start>
@@ -35,5 +27,22 @@
       <p>Distanz: {{beacon.distance | number:'1.2-2'}} m</p>
     </ion-item>
   </ion-list>
+
+  <ion-card>
+    <ion-card-header>
+      Set position of beacons [m]
+    </ion-card-header>
+    <ion-card-content>
+      <h3>Blueberry</h3>
+      <p>X: <input [(ngModel)]="blueberryPosition.x"></p>
+      <p>Y: <input [(ngModel)]="blueberryPosition.y"></p>
+      <h3>Mint</h3>
+      <p>X: <input [(ngModel)]="mintPosition.x"></p>
+      <p>Y: <input [(ngModel)]="mintPosition.y"></p>
+      <h3>Ice</h3>
+      <p>X: <input [(ngModel)]="icePosition.x"></p>
+      <p>Y: <input [(ngModel)]="icePosition.y"></p>
+    </ion-card-content>
+  </ion-card>
 
 </ion-content>

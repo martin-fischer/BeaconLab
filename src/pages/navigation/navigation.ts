@@ -15,7 +15,7 @@ export class NavigationPage {
   currentPosition: BeaconCoordinate = new BeaconCoordinate();
   beaconList;
   blueberryPosition: BeaconCoordinate = {x: 0, y:0};
-  mintPosition: BeaconCoordinate = {x: 10, y:0};
+  mintPosition: BeaconCoordinate = {x: 17, y:0};
   icePosition: BeaconCoordinate = {x: 5, y:5};
 
   constructor(private beaconScannerService: BeaconScannerService) {
