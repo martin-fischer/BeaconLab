@@ -101,7 +101,7 @@ export class HomePage {
         beacon.objectArtStyle = 'Jugendstil';
         beacon.objectURL = 'https://de.wikipedia.org/wiki/Der_Kuss_(Klimt)';
         beacon.objectImageFile = 'assets/museum/imgs/klimt_der_kuss.jpg';
-        beacon.objectSoundFile = 'assets/museum/sounds/Rembrandt_Selbstbildnis_als_der_verlorene_ Sohn_im_Wirtshaus.mp3';
+        beacon.objectSoundFile = '';
       } else if (this.beaconScannerService.isMintBeacon(beacon)) {
         beacon.objectId = 'monet1';
         beacon.objectTitle = 'Seerosenteich II';
@@ -109,7 +109,7 @@ export class HomePage {
         beacon.objectArtStyle = 'Impressionismus';
         beacon.objectURL = 'https://www.kunstkopie.ch/a/claude-monet/seerosenteich-ii.html';
         beacon.objectImageFile = 'assets/museum/imgs/monet_seerosenteich.jpg';
-        beacon.objectSoundFile = 'assets/museum/sounds/Rembrandt_Selbstbildnis_als_der_verlorene_ Sohn_im_Wirtshaus.mp3';
+        beacon.objectSoundFile = '';
       }
       this.initializedBeaconsWithPaitingInformation = true;
     })
@@ -135,18 +135,27 @@ export class HomePage {
     this.stopAllSounds();
 
     this.nativeAudio.preloadComplex(id, soundFile, 1, 1, 0).then(() => {
-      this.nativeAudio.play(id).then(() => {
-        this.playingInProgress = true;
-      }, (error) => {
-        this.playingInProgress = false;
-      });
+      this.playSoundFile(id);
     }, (error) => {
+      this.playSoundFile(id);
+    });
+  }
+
+  playSoundFile(id) {
+    this.nativeAudio.play(id).then(() => {
+      this.playingInProgress = true;
+    }, (error) => {
+      alert(error);
       this.playingInProgress = false;
     });
   }
 
   stopPaintingInfo(id: string) {
-    this.nativeAudio.stop(id).then(() => {}, () => {});
-    this.playingInProgress = false;
+    this.nativeAudio.stop(id).then(() => {
+      this.playingInProgress = false;
+    }, () => {
+      this.playingInProgress = true;
+    });
+
   }
 }

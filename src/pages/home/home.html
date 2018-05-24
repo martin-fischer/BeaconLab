@@ -18,11 +18,11 @@
       <ion-icon name="paper"></ion-icon>
       Info lesen
     </button>
-    <button ion-button icon-start (click)="playPaintingInfo(nearestBeacon.objectId, nearestBeacon.objectSoundFile)" *ngIf="!playingInProgress">
+    <button ion-button icon-start (click)="playPaintingInfo(nearestBeacon.objectId, nearestBeacon.objectSoundFile)" *ngIf="nearestBeacon.objectSoundFile && !playingInProgress">
       <ion-icon name="play"></ion-icon>
       Info abspielen
     </button>
-    <button ion-button icon-start (click)="stopPaintingInfo(nearestBeacon.objectId)" *ngIf="playingInProgress">
+    <button ion-button icon-start (click)="stopPaintingInfo(nearestBeacon.objectId)" *ngIf="nearestBeacon.objectSoundFile && playingInProgress">
       <ion-icon name="square"></ion-icon>
       Info stoppen
     </button>
