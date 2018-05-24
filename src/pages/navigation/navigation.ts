@@ -27,7 +27,7 @@ export class NavigationPage {
     }
 
     // Timer that refreshes the beacon list.
-    setInterval(() => this.getCurrentPosition(), 1000);
+    setInterval(() => this.getCurrentPosition(), 2000);
 
     //this.drawChart();
   }
