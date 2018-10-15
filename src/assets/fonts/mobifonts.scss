@@ -1,0 +1,417 @@
+@font-face {
+  font-family: 'Mobiliar Realist';
+  src: url($font-path + '/mobi-font-realist/MobiliarRealistWeb-SemiLight.woff') format('woff'),
+  url($font-path + '/mobi-font-realist/MobiliarRealistWeb-SemiLight.eot') format('embedded-opentype'),
+  url($font-path + '/mobi-font-realist/MobiliarRealistWeb-SemiLight.ttf') format('truetype'),
+  url($font-path + '/mobi-font-realist/MobiliarRealistWeb-SemiLight.svg') format('svg');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Mobiliar Realist';
+  src: url($font-path + '/mobi-font-realist/MobiliarRealistWeb-Bold.woff') format('woff'),
+  url($font-path + '/mobi-font-realist/MobiliarRealistWeb-Bold.eot') format('embedded-opentype'),
+  url($font-path + '/mobi-font-realist/MobiliarRealistWeb-Bold.ttf') format('truetype'),
+  url($font-path + '/mobi-font-realist/MobiliarRealistWeb-Bold.svg') format('svg');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Mobiliar Tisa';
+  src: url($font-path + '/mobi-font-tisa/TisaPro-Medi.woff') format('woff'),
+  url($font-path + '/mobi-font-tisa/TisaPro-Medi.eot') format('embedded-opentype'),
+  url($font-path + '/mobi-font-tisa/TisaPro-Medi.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Mobiliar Tisa';
+  src: url($font-path + '/mobi-font-tisa/TisaPro-Light.woff') format('woff'),
+  url($font-path + '/mobi-font-tisa/TisaPro-Light.eot') format("embedded-opentype"),
+  url($font-path + '/mobi-font-tisa/TisaPro-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Mobiliar Tisa';
+  src: url($font-path + '/mobi-font-tisa/TisaPro-Regular.woff2') format('woff2'),
+  url($font-path + '/mobi-font-tisa/TisaPro-Regular.woff') format('woff'),
+  url($font-path + '/mobi-font-tisa/TisaPro-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Mobiliar Iconfont Base';
+  src: url($font-path + '/mobi-font-icon/Mobiliar-Iconfont-Base.eot');
+  src: url($font-path + '/mobi-font-icon/Mobiliar-Iconfont-Base.eot') format('embedded-opentype'),
+  url($font-path + '/mobi-font-icon/Mobiliar-Iconfont-Base.svg') format('svg'),
+  url($font-path + '/mobi-font-icon/Mobiliar-Iconfont-Base.woff') format('woff'),
+  url($font-path + '/mobi-font-icon/Mobiliar-Iconfont-Base.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Mobiliar Iconfont Smart Drive';
+  src: url($font-path + '/mobi-font-icon/Mobiliar-Iconfont-SmartDrive.eot');
+  src: url($font-path + '/mobi-font-icon/Mobiliar-Iconfont-SmartDrive.eot') format('embedded-opentype'),
+  url($font-path + '/mobi-font-icon/Mobiliar-Iconfont-SmartDrive.svg') format('svg'),
+  url($font-path + '/mobi-font-icon/Mobiliar-Iconfont-SmartDrive.woff') format('woff'),
+  url($font-path + '/mobi-font-icon/Mobiliar-Iconfont-SmartDrive.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+/*
+ * Custom ion-icon with Mobiliar icon font base
+ */
+ion-icon[class*="mob_ico_base"] {
+  @extend ionic.ionicons !optional;
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'Mobiliar Iconfont Base' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/*
+ * Custom ion-icon with Mobiliar icon font mft
+ */
+ion-icon[class*="mob_ico_mft"] {
+  @extend ionic.ionicons !optional;
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'Mobiliar Iconfont Smart Drive' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// mixin for creating mobi icon for ion-icon
+@mixin createMobIco($arg, $val) {
+  .ion-ios-#{$arg}:before,
+  .ion-ios-#{$arg}-circle:before,
+  .ion-ios-#{$arg}-circle-outline:before,
+  .ion-ios-#{$arg}-outline:before,
+  .ion-md-#{$arg}:before,
+  .ion-md-#{$arg}-circle:before,
+  .ion-md-#{$arg}-circle-outline:before,
+  .ion-md-#{$arg}-outline:before {
+    content: $val;
+  }
+}
+
+// mobi icon list mapping unicode characters to access names generated with https://icomoon.io/ from icon font
+$mob_ico_list: (
+        mob_ico_base_lightning_bolt: "\e900",
+        mob_ico_base_arrow_down: "\e901",
+        mob_ico_base_arrow_left: "\e902",
+        mob_ico_base_arrow_up: "\e903",
+        mob_ico_base_arrow_right: "\e904",
+        mob_ico_base_article: "\e905",
+        mob_ico_base_audio: "\e906",
+        mob_ico_base_bell: "\e907",
+        mob_ico_base_book_open: "\e908",
+        mob_ico_base_book: "\e909",
+        mob_ico_base_bvm: "\e90a",
+        mob_ico_base_cabinet: "\e90b",
+        mob_ico_base_case: "\e90c",
+        mob_ico_base_checkbox_tik: "\e90d",
+        mob_ico_base_checkbox: "\e90e",
+        mob_ico_base_close_circle: "\e90f",
+        mob_ico_base_cog: "\e910",
+        mob_ico_base_contract: "\e911",
+        mob_ico_base_copy: "\e912",
+        mob_ico_base_dashboard: "\e913",
+        mob_ico_base_desktop: "\e914",
+        mob_ico_base_down: "\e915",
+        mob_ico_base_download: "\e916",
+        mob_ico_base_error_fill: "\e917",
+        mob_ico_base_error: "\e918",
+        mob_ico_base_excel: "\e919",
+        mob_ico_base_expand: "\e91a",
+        mob_ico_base_facebook: "\e91b",
+        mob_ico_base_filter: "\e91c",
+        mob_ico_base_flag: "\e91d",
+        mob_ico_base_folder: "\e91e",
+        mob_ico_base_gauge: "\e91f",
+        mob_ico_base_go_to: "\e920",
+        mob_ico_base_googleplus: "\e921",
+        mob_ico_base_graph_bar_chart: "\e922",
+        mob_ico_base_graph_pie_chart: "\e923",
+        mob_ico_base_import: "\e924",
+        mob_ico_base_info: "\e925",
+        mob_ico_base_instagram: "\e926",
+        mob_ico_base_keynote: "\e927",
+        mob_ico_base_left: "\e928",
+        mob_ico_base_linkedin: "\e929",
+        mob_ico_base_locked: "\e92a",
+        mob_ico_base_menu: "\e92b",
+        mob_ico_base_minus: "\e92c",
+        mob_ico_base_more: "\e92d",
+        mob_ico_base_news: "\e92e",
+        mob_ico_base_note: "\e92f",
+        mob_ico_base_offer: "\e930",
+        mob_ico_base_ok: "\e931",
+        mob_ico_base_2_x_2: "\e932",
+        mob_ico_base_pause: "\e933",
+        mob_ico_base_pdf: "\e934",
+        mob_ico_base_picture: "\e935",
+        mob_ico_base_play: "\e936",
+        mob_ico_base_plus: "\e937",
+        mob_ico_base_question: "\e938",
+        mob_ico_base_radiobutton_circle: "\e939",
+        mob_ico_base_radiobutton_selected: "\e93a",
+        mob_ico_base_radiobutton: "\e93b",
+        mob_ico_base_redo: "\e93c",
+        mob_ico_base_refresh: "\e93d",
+        mob_ico_base_reload: "\e93e",
+        mob_ico_base_right: "\e93f",
+        mob_ico_base_search: "\e940",
+        mob_ico_base_share: "\e941",
+        mob_ico_base_snapchat: "\e942",
+        mob_ico_base_tag: "\e943",
+        mob_ico_base_taskboard: "\e944",
+        mob_ico_base_text: "\e945",
+        mob_ico_base_trash: "\e946",
+        mob_ico_base_twitter: "\e947",
+        mob_ico_base_undo: "\e948",
+        mob_ico_base_unlocked: "\e949",
+        mob_ico_base_up: "\e94a",
+        mob_ico_base_video: "\e94b",
+        mob_ico_base_vr: "\e94c",
+        mob_ico_base_warning: "\e94d",
+        mob_ico_base_word: "\e94e",
+        mob_ico_base_xing: "\e94f",
+        mob_ico_base_youtube: "\e950",
+        mob_ico_base_advice: "\e951",
+        mob_ico_base_sun: "\e952",
+        mob_ico_base_apartment: "\e953",
+        mob_ico_base_baby: "\e954",
+        mob_ico_base_bag: "\e955",
+        mob_ico_base_badge: "\e956",
+        mob_ico_base_bed: "\e957",
+        mob_ico_base_balloon: "\e958",
+        mob_ico_base_bandage: "\e959",
+        mob_ico_base_tablet_landscape: "\e95a",
+        mob_ico_base_basket: "\e95b",
+        mob_ico_base_close: "\e95c",
+        mob_ico_base_bicycle: "\e95d",
+        mob_ico_base_damage: "\e95e",
+        mob_ico_base_boat: "\e95f",
+        mob_ico_base_bottle: "\e960",
+        mob_ico_base_boy: "\e961",
+        mob_ico_base_bulb: "\e962",
+        mob_ico_base_bus: "\e963",
+        mob_ico_base_incident: "\e964",
+        mob_ico_base_calculator: "\e965",
+        mob_ico_base_calendar: "\e966",
+        mob_ico_base_callcenter_agent: "\e967",
+        mob_ico_base_car_dealer: "\e968",
+        mob_ico_base_car_work: "\e969",
+        mob_ico_base_car: "\e96a",
+        mob_ico_base_caravan: "\e96b",
+        mob_ico_base_chair: "\e96c",
+        mob_ico_base_chat: "\e96d",
+        mob_ico_base_city: "\e96e",
+        mob_ico_base_damage_case: "\e96f",
+        mob_ico_base_clock: "\e970",
+        mob_ico_base_cloud_hail: "\e971",
+        mob_ico_base_cloud_rain: "\e972",
+        mob_ico_base_cloud_snow: "\e973",
+        mob_ico_base_cloudy: "\e974",
+        mob_ico_base_cloud: "\e975",
+        mob_ico_base_coin: "\e976",
+        mob_ico_base_company: "\e977",
+        mob_ico_base_compass: "\e978",
+        mob_ico_base_construction: "\e979",
+        mob_ico_base_contract_data: "\e97a",
+        mob_ico_base_conversation: "\e97b",
+        mob_ico_base_couch: "\e97c",
+        mob_ico_base_credit_card: "\e97d",
+        mob_ico_base_cross: "\e97e",
+        mob_ico_base_cup: "\e97f",
+        mob_ico_base_cutlery: "\e980",
+        mob_ico_base_save: "\e981",
+        mob_ico_base_damage_report: "\e982",
+        mob_ico_base_hourglass: "\e983",
+        mob_ico_base_day: "\e984",
+        mob_ico_base_desk: "\e985",
+        mob_ico_base_desktop_computer: "\e986",
+        mob_ico_base_document: "\e987",
+        mob_ico_base_door: "\e988",
+        mob_ico_base_electronics: "\e989",
+        mob_ico_base_email: "\e98a",
+        mob_ico_base_envelope_open: "\e98b",
+        mob_ico_base_envelope: "\e98c",
+        mob_ico_base_event: "\e98d",
+        mob_ico_base_expert: "\e98e",
+        mob_ico_base_factory: "\e98f",
+        mob_ico_base_farm: "\e990",
+        mob_ico_base_fax: "\e991",
+        mob_ico_base_file: "\e992",
+        mob_ico_base_flower: "\e993",
+        mob_ico_base_fog: "\e994",
+        mob_ico_base_food: "\e995",
+        mob_ico_base_forecast: "\e996",
+        mob_ico_base_forest: "\e997",
+        mob_ico_base_girl: "\e998",
+        mob_ico_base_glass_alternative: "\e999",
+        mob_ico_base_glass_broken: "\e99a",
+        mob_ico_base_glass: "\e99b",
+        mob_ico_base_globe: "\e99c",
+        mob_ico_base_hand_open: "\e99d",
+        mob_ico_base_hand_touch: "\e99e",
+        mob_ico_base_heart: "\e99f",
+        mob_ico_base_history: "\e9a0",
+        mob_ico_base_house: "\e9a1",
+        mob_ico_base_bank: "\e9a2",
+        mob_ico_base_inventory_company: "\e9a3",
+        mob_ico_base_inventory_damage: "\e9a4",
+        mob_ico_base_inventory_home: "\e9a5",
+        mob_ico_base_island: "\e9a6",
+        mob_ico_base_jewellery: "\e9a7",
+        mob_ico_base_judge: "\e9a8",
+        mob_ico_base_leaf: "\e9a9",
+        mob_ico_base_life_preserver: "\e9aa",
+        mob_ico_base_lighthouse: "\e9ab",
+        mob_ico_base_cloud_lightning: "\e9ac",
+        mob_ico_base_location_pin: "\e9ad",
+        mob_ico_base_machine: "\e9ae",
+        mob_ico_base_mailbox: "\e9af",
+        mob_ico_base_maintenance: "\e9b0",
+        mob_ico_base_man: "\e9b1",
+        mob_ico_base_map: "\e9b2",
+        mob_ico_base_message_ceo: "\e9b3",
+        mob_ico_base_message_empty: "\e9b4",
+        mob_ico_base_message: "\e9b5",
+        mob_ico_base_videocamera: "\e9b6",
+        mob_ico_base_microphone: "\e9b7",
+        mob_ico_base_mobile_home: "\e9b8",
+        mob_ico_base_mobilephone: "\e9b9",
+        mob_ico_base_money: "\e9ba",
+        mob_ico_base_motorcycle: "\e9bb",
+        mob_ico_base_mountains: "\e9bc",
+        mob_ico_base_nfc: "\e9bd",
+        mob_ico_base_night: "\e9be",
+        mob_ico_base_notebook_computer: "\e9bf",
+        mob_ico_base_paint: "\e9c0",
+        mob_ico_base_paintbrush: "\e9c1",
+        mob_ico_base_pedestal: "\e9c2",
+        mob_ico_base_pencil: "\e9c3",
+        mob_ico_base_partner_group: "\e9c4",
+        mob_ico_base_partner: "\e9c5",
+        mob_ico_base_pet_cat: "\e9c6",
+        mob_ico_base_pet_dog: "\e9c7",
+        mob_ico_base_phone: "\e9c8",
+        mob_ico_base_photocamera: "\e9c9",
+        mob_ico_base_piggybank: "\e9ca",
+        mob_ico_base_plane: "\e9cb",
+        mob_ico_base_plate: "\e9cc",
+        mob_ico_base_printer: "\e9cd",
+        mob_ico_base_property: "\e9ce",
+        mob_ico_base_provision: "\e9cf",
+        mob_ico_base_purse: "\e9d0",
+        mob_ico_base_puzzle: "\e9d1",
+        mob_ico_base_qr_code: "\e9d2",
+        mob_ico_base_radio: "\e9d3",
+        mob_ico_base_reclaim: "\e9d4",
+        mob_ico_base_regress: "\e9d5",
+        mob_ico_base_rocket: "\e9d6",
+        mob_ico_base_safe: "\e9d7",
+        mob_ico_base_scale: "\e9d8",
+        mob_ico_base_shed: "\e9d9",
+        mob_ico_base_shield_tik: "\e9da",
+        mob_ico_base_shield: "\e9db",
+        mob_ico_base_ship: "\e9dc",
+        mob_ico_base_signpost: "\e9dd",
+        mob_ico_base_smartwatch: "\e9de",
+        mob_ico_base_speaker: "\e9df",
+        mob_ico_base_star: "\e9e0",
+        mob_ico_base_store: "\e9e1",
+        mob_ico_base_joystick: "\e9e2",
+        mob_ico_base_receipt: "\e9e3",
+        mob_ico_base_tablet_portrait: "\e9e4",
+        mob_ico_base_telescope: "\e9e5",
+        mob_ico_base_temple: "\e9e6",
+        mob_ico_base_thumbs_down: "\e9e7",
+        mob_ico_base_thumbs_up: "\e9e8",
+        mob_ico_base_ticket: "\e9e9",
+        mob_ico_base_tractor: "\e9ea",
+        mob_ico_base_traffic_cone: "\e9eb",
+        mob_ico_base_trailer: "\e9ec",
+        mob_ico_base_train: "\e9ed",
+        mob_ico_base_treasure: "\e9ee",
+        mob_ico_base_tree: "\e9ef",
+        mob_ico_base_truck: "\e9f0",
+        mob_ico_base_tv: "\e9f1",
+        mob_ico_base_umbrella: "\e9f2",
+        mob_ico_base_family: "\e9f3",
+        mob_ico_base_vehicles: "\e9f4",
+        mob_ico_base_visum: "\e9f5",
+        mob_ico_base_barcode: "\e9f6",
+        mob_ico_base_wallet: "\e9f7",
+        mob_ico_base_washing_machine: "\e9f8",
+        mob_ico_base_wedding: "\e9f9",
+        mob_ico_base_woman: "\e9fa",
+        mob_ico_base_zeppelin: "\e9fb",
+        mob_ico_base_zirkus: "\e9fc",
+        mob_ico_base_business_card: "\e9fd",
+        mob_ico_base_tik: "\e9fe",
+        mob_ico_base_connection: "\e9ff",
+        mob_ico_base_disconnected: "\ea00",
+        mob_ico_base_attachment: "\ea01",
+        mob_ico_base_partner_company: "\ea02",
+        mob_ico_base_person: "\ea03",
+        mob_ico_base_star_filled: "\ea04",
+        mob_ico_base_dress: "\ea05",
+        mob_ico_base_drone: "\ea06",
+        mob_ico_base_guitar: "\ea07",
+        mob_ico_base_gun: "\ea08",
+        mob_ico_base_headphones: "\ea09",
+        mob_ico_base_lamp: "\ea0a",
+        mob_ico_base_ring: "\ea0b",
+        mob_ico_base_shirt: "\ea0c",
+        mob_ico_base_surfboard: "\ea0d",
+        mob_ico_base_tool: "\ea0e",
+        mob_ico_base_vinyl: "\ea0f",
+        mob_ico_base_weights: "\ea10",
+        mob_ico_base_screen: "\ea11",
+        mob_ico_base_placeholder: "\ea12",
+        mob_ico_base_ear: "\ea14",
+        mob_ico_base_burglar: "\ea15",
+        mob_ico_base_fire: "\ea16",
+        mob_ico_base_horse: "\ea17",
+        mob_ico_base_luggage: "\ea18",
+        mob_ico_base_marten: "\ea19",
+        mob_ico_base_parking: "\ea1a",
+        mob_ico_base_pickpocket: "\ea1b",
+        mob_ico_base_ski: "\ea1c",
+        mob_ico_base_water: "\ea1d",
+        mob_ico_base_window: "\ea1e",
+        mob_ico_mft_cup: "\e900",
+        mob_ico_mft_thumbs_down: "\e901",
+        mob_ico_mft_thumbs_up: "\e902",
+        mob_ico_mft_thumbs_left: "\e903"
+);
+
+// iterate through $mob_ico_list and create icons
+@each $name, $char in $mob_ico_list {
+  @include createMobIco($name, $char);
+}

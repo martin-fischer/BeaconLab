@@ -5,15 +5,12 @@
 // roboto, and noto sans fonts
 $font-path: "../assets/fonts";
 
-
 // The app direction is used to include
 // rtl styles in your app. For more info, please see:
 // http://ionicframework.com/docs/theming/rtl-support/
 $app-direction: ltr;
 
-
 @import "ionic.globals";
-
 
 // Shared Variables
 // --------------------------------------------------
@@ -21,9 +18,6 @@ $app-direction: ltr;
 // the Sass variables found in Ionic's source scss files.
 // To view all the possible Ionic variables, see:
 // http://ionicframework.com/docs/theming/overriding-ionic-variables/
-
-
-
 
 // Named Color Variables
 // --------------------------------------------------
@@ -33,35 +27,305 @@ $app-direction: ltr;
 // colors so you can add, rename and remove colors as needed.
 // The "primary" color is the only required color in the map.
 
+$color-mobi-black: #000000;
+$color-mobi-white: #FFFFFF;
+$color-mobi-white-gray: #FDFDFD;
+
+$color-mobi-red: #DA2323;
+$color-mobi-red-active: #E62525;
+$color-mobi-red-hover: #B21E1E;
+
+$color-mobi-light-blue-20: #E2F3F6;
+$color-mobi-light-blue-40: #C6E7EE;
+$color-mobi-light-blue-60: #A9DBE5;
+$color-mobi-light-blue-80: #8DCFDD;
+$color-mobi-light-blue-100: #70C3D4;
+
+$color-mobi-dark-blue-20: #CCE5E9;
+$color-mobi-dark-blue-40: #99CAD3;
+$color-mobi-dark-blue-60: #66B0BD;
+$color-mobi-dark-blue-80: #3395A7;
+$color-mobi-dark-blue-100: #007B91;
+
+$color-mobi-light-green-20: #EFF5DF;
+$color-mobi-light-green-40: #DFEBBF;
+$color-mobi-light-green-60: #CFE19F;
+$color-mobi-light-green-80: #BFD77F;
+$color-mobi-light-green-100: #AFCD5F;
+
+$color-mobi-dark-green-20: #CCEBE4;
+$color-mobi-dark-green-40: #99D8C9;
+$color-mobi-dark-green-60: #66C4AE;
+$color-mobi-dark-green-80: #33B193;
+$color-mobi-dark-green-100: #009D78;
+
+$color-mobi-light-orange-20: #ffeed4;
+$color-mobi-light-orange-40: #ffdeaa;
+$color-mobi-light-orange-60: #ffcd7f;
+$color-mobi-light-orange-80: #ffbd55;
+$color-mobi-light-orange-100: #ffac2a;
+
+$color-mobi-dark-orange-20: #f7e1cc;
+$color-mobi-dark-orange-40: #efc499;
+$color-mobi-dark-orange-60: #e7a666;
+$color-mobi-dark-orange-80: #df8933;
+$color-mobi-dark-orange-100: #d76b00;
+
+$color-mobi-pink-20: #FCE9F2;
+$color-mobi-pink-40: #F9D3E5;
+$color-mobi-pink-60: #F6BDD8;
+$color-mobi-pink-80: #F3A7CB;
+$color-mobi-pink-100: #F091BE;
+
+$color-mobi-dark-red-20: #F2CCE4;
+$color-mobi-dark-red-40: #E599C9;
+$color-mobi-dark-red-60: #D866AE;
+$color-mobi-dark-red-80: #CB3393;
+$color-mobi-dark-red-100: #BE0078;
+
+$color-mobi-light-gray-20: #F8F8F6;
+$color-mobi-light-gray-40: #F2F1ED;
+$color-mobi-light-gray-60: #EBEAE4;
+$color-mobi-light-gray-80: #E5E3DB;
+$color-mobi-light-gray-100: #DEDCD2;
+
+$color-mobi-dark-gray-20: #EAEBEC;
+$color-mobi-dark-gray-40: #D5D7D9;
+$color-mobi-dark-gray-60: #C0C3C6;
+$color-mobi-dark-gray-80: #ABAFB3;
+$color-mobi-dark-gray-100: #969BA0;
+
 $colors: (
-  primary:    #488aff,
-  secondary:  #32db64,
-  danger:     #f53d3d,
-  light:      #f4f4f4,
-  dark:       #222
+        primary: #DA2323,
+        secondary: #969BA0,
+        danger: #E62525,
+        success: #009D78,
+        light: #F8F8F6,
+        dark: #000000,
+        white: #ffffff,
+        hairline: #D5D7D9,
+        disabled: #ABAFB3,
+        extralight: #FDFDFD,
+        empty: #EEEEEE,
+        info: #007B91
 );
 
+// Shared Variables
+// --------------------------------------------------
+// To customize the look and feel of this app, you can override
+// the Sass variables found in Ionic's source scss files.
+// To view all the possible Ionic variables, see:
+// http://ionicframework.com/docs/theming/overriding-ionic-variables/
+
+/*
+ * Content
+ */
+$background-color: $color-mobi-white;
+$font-family-base: Mobiliar Realist, Segoe UI, Arial, Helvetica, sans-serif;
+$font-size-base: 16px;
+$text-color: $color-mobi-black;
+
+/*
+ * Toolbar
+ */
+$toolbar-background: $color-mobi-white;
+$toolbar-border-color: $color-mobi-dark-gray-20;
+
+/*
+ * Tabs
+ */
+$tabs-background: $color-mobi-white;
+$tabs-border-color: $color-mobi-dark-gray-20;
+
+/*
+ * Typo
+ */
+$h1-font-size: 3.2rem;
+$h2-font-size: 2.0rem;
+$h3-font-size: 1.6rem;
+$h4-font-size: 1.6rem;
+$h5-font-size: 1.6rem;
+$h6-font-size: 1.6rem;
+
+/*
+ * List
+ */
+$list-border-color: map_get($colors, hairline);
+
+/*
+ * Refresher
+ */
+$refresher-border-color: transparent;
+$refresher-text-font-size: 1.3rem;
 
 // App iOS Variables
 // --------------------------------------------------
 // iOS only Sass variables can go here
 
+/*
+ * Toolbar
+ */
+$toolbar-ios-title-font-weight: 400;
+$toolbar-ios-title-text-color: $color-mobi-red;
+$toolbar-ios-border-color: $toolbar-border-color;
 
+/*
+ * Tabs
+ */
+$tabs-ios-border-color: $tabs-border-color;
+$tabs-ios-tab-text-color: $color-mobi-black;
+$tabs-ios-tab-text-color-active: $color-mobi-black;
 
+/*
+ * List
+ */
+$item-ios-body-text-font-size: 1.6rem;
+$item-ios-paragraph-font-size: 1.6rem;
+$item-ios-paragraph-text-color: $color-mobi-black;
+$item-ios-paragraph-margin-bottom: 0;
+$item-ios-avatar-size: 72px;
+$item-ios-thumbnail-size: 72px;
+$note-ios-color: map_get($colors, secondary);
+$list-ios-header-font-size: 1.3rem;
+$list-ios-header-font-weight: normal;
+$list-ios-header-letter-spacing: 0;
+$list-ios-header-text-transform: none;
+$list-ios-header-color: $color-mobi-black;
+
+/*
+ * Buttons
+ */
+$button-ios-large-height: 3.25em;
+$button-ios-large-font-size: 1.6rem;
+$button-ios-outline-text-color: $color-mobi-black;
+$button-ios-margin-top: 0.8rem;
+$button-ios-margin-bottom: 0.8rem;
+
+/*
+ * Cards
+ */
+$card-ios-margin-top: 16px;
+$card-ios-margin-bottom: 16px;
+$card-ios-margin-left: 16px;
+$card-ios-margin-right: 16px;
+$card-ios-border-radius: 0;
+$card-ios-box-shadow-color: rgba(0, 0, 0, .05);
+$card-ios-box-shadow: 0 2px 4px 0 $card-ios-box-shadow-color;
+
+/*
+ * Segment
+ */
+$segment-button-ios-toolbar-button-max-width: auto;
+
+/*
+ * Searchbar
+ */
+$searchbar-ios-input-height: 4rem;
+$searchbar-ios-background-color: transparent;
+$searchbar-ios-border-color: map_get($colors, hairline);
+$searchbar-ios-input-search-icon-size: 22px;
+$searchbar-ios-input-search-icon-svg: "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><path fill='fg-color' d='M22.126 20.751l6.438 6.438c0 0 0.754 0.754 0 1.509s-1.509 0-1.509 0l-6.438-6.438c-1.839 1.505-4.189 2.408-6.751 2.408-5.891 0-10.667-4.776-10.667-10.667s4.776-10.667 10.667-10.667c5.891 0 10.667 4.776 10.667 10.667 0 2.561-0.903 4.912-2.408 6.751zM13.867 22.533c4.713 0 8.533-3.82 8.533-8.533s-3.82-8.533-8.533-8.533c-4.713 0-8.533 3.82-8.533 8.533s3.82 8.533 8.533 8.533zM20.8 14v0.533h-1.067v-0.533c0-0.781-0.152-1.54-0.445-2.245-0.295-0.712-0.729-1.358-1.273-1.903s-1.191-0.978-1.903-1.273c-0.705-0.292-1.464-0.445-2.245-0.445h-0.533v-1.067h0.533c0.922 0 1.82 0.18 2.654 0.526 0.841 0.349 1.605 0.861 2.249 1.504s1.156 1.407 1.504 2.249c0.346 0.834 0.526 1.732 0.526 2.654z'></path></svg>";
+$searchbar-ios-padding-vertical: 16px;
+$searchbar-ios-padding-horizontal: 16px;
+
+/*
+ * Popover
+ */
+$popover-ios-width: calc(100% - 4px);
+$popover-ios-max-height: 40%;
+$popover-ios-border-radius: 0;
 
 // App Material Design Variables
 // --------------------------------------------------
 // Material Design only Sass variables can go here
 
+/*
+ * Content
+ */
+$font-family-md-base: Mobiliar Realist, Segoe UI, Arial, Helvetica, sans-serif;
 
+/*
+ * Toolbar
+ */
+$toolbar-md-title-text-color: $color-mobi-red;
+$toolbar-md-border-color: $color-mobi-light-gray-20;
 
+/*
+ * Tabs
+ */
+$tabs-md-tab-text-color: $color-mobi-black;
+$tabs-md-tab-text-color-active: $color-mobi-black;
+$tabs-md-tab-font-size: 1rem;
+$tabs-md-tab-font-size-active: 1rem;
 
-// App Windows Variables
-// --------------------------------------------------
-// Windows only Sass variables can go here
+/*
+ * Lists
+ */
+$item-md-detail-push-show: false;
+$list-md-header-border-top: 0;
+$list-md-header-margin-bottom: 0;
+$list-md-header-color: $color-mobi-black;
+$list-md-margin-bottom: 32px;
+$item-md-paragraph-text-color: $color-mobi-black;
+$item-md-avatar-size: 72px;
+$item-md-thumbnail-size: 72px;
+$item-md-padding-top: 11px;
+$item-md-padding-bottom: 11px;
+$label-md-text-color: $color-mobi-black;
+$label-md-text-color-focused: $label-md-text-color;
+$text-input-md-show-focus-highlight: false;
+$checkbox-md-item-start-margin-end: 16px;
 
+/*
+ * Inputs
+ */
+$text-input-md-margin-start: 0;
+$select-md-padding-start: 0;
 
+/*
+ * Buttons
+ */
+$button-md-height: 2.8em;
+$button-md-large-height: 3.25em;
+$button-md-large-font-size: 1.6rem;
+$button-md-outline-text-color: $color-mobi-black;
+$button-md-text-transform: none;
+$button-md-font-weight: 400;
+$button-md-box-shadow: none;
+$button-md-border-radius: 4px;
+$button-md-margin-top: 0.8rem;
+$button-md-margin-bottom: 0.8rem;
 
+/*
+ * Cards
+ */
+$card-md-margin-top: 16px;
+$card-md-margin-bottom: 16px;
+$card-md-margin-left: 16px;
+$card-md-margin-right: 16px;
+$card-md-border-radius: 0;
+$card-md-box-shadow-color: rgba(0, 0, 0, .05);
+$card-md-box-shadow: 0 2px 4px 0 $card-md-box-shadow-color;
+
+/*
+ * Segments
+ */
+$segment-button-md-text-color-activated: $color-mobi-black;
+
+/*
+ * Searchbar
+ */
+
+$searchbar-md-padding-top: 16px;
+$searchbar-md-input-border-radius: 5px;
+$searchbar-md-input-search-icon-svg: "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><path fill='fg-color' d='M22.126 20.751l6.438 6.438c0 0 0.754 0.754 0 1.509s-1.509 0-1.509 0l-6.438-6.438c-1.839 1.505-4.189 2.408-6.751 2.408-5.891 0-10.667-4.776-10.667-10.667s4.776-10.667 10.667-10.667c5.891 0 10.667 4.776 10.667 10.667 0 2.561-0.903 4.912-2.408 6.751zM13.867 22.533c4.713 0 8.533-3.82 8.533-8.533s-3.82-8.533-8.533-8.533c-4.713 0-8.533 3.82-8.533 8.533s3.82 8.533 8.533 8.533zM20.8 14v0.533h-1.067v-0.533c0-0.781-0.152-1.54-0.445-2.245-0.295-0.712-0.729-1.358-1.273-1.903s-1.191-0.978-1.903-1.273c-0.705-0.292-1.464-0.445-2.245-0.445h-0.533v-1.067h0.533c0.922 0 1.82 0.18 2.654 0.526 0.841 0.349 1.605 0.861 2.249 1.504s1.156 1.407 1.504 2.249c0.346 0.834 0.526 1.732 0.526 2.654z'></path></svg>";
+$searchbar-md-input-box-shadow: none;
+
+/*
+ * Popover
+ */
+$popover-md-width: calc(100% - 32px);
+$popover-md-max-height: 40%;
 
 // App Theme
 // --------------------------------------------------
@@ -72,14 +336,12 @@ $colors: (
 
 @import "ionic.theme.default";
 
-
 // Ionicons
 // --------------------------------------------------
 // The premium icon font for Ionic. For more info, please see:
 // http://ionicframework.com/docs/ionicons/
 
 @import "ionic.ionicons";
-
 
 // Fonts
 // --------------------------------------------------
