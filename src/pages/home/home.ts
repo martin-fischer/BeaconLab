@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import {DomSanitizer} from "@angular/platform-browser";
 import {InAppBrowser} from '@ionic-native/in-app-browser';
 import {NativeAudio} from "@ionic-native/native-audio";
 import _ from "lodash";
@@ -22,7 +23,7 @@ export class HomePage {
   readonly REACH_OF_VALID_BEACONS = 2; // we only want beacons within a distance of 2 meters
   readonly BEACON_QUEUE_MAX_SIZE = 8;
 
-  constructor(private beaconScannerService: BeaconScannerService, private iab: InAppBrowser, private nativeAudio: NativeAudio) {
+  constructor(private beaconScannerService: BeaconScannerService, private iab: InAppBrowser, private nativeAudio: NativeAudio, private domSanitizer: DomSanitizer) {
   }
 
   ionViewWillEnter(): void {
@@ -104,28 +105,29 @@ export class HomePage {
   initializeBeaconsWithPaitingInformation(beaconList): void {
     _.forEach(beaconList, (beacon) => {
       if (this.beaconScannerService.isBlueberryBeacon(beacon)) {
-        beacon.objectId = 'rembrandt1';
-        beacon.objectTitle = 'Die Rückkehr des verlorenen Sohnes';
-        beacon.objectPainter = 'Rembrandt';
-        beacon.objectArtStyle = 'Barock';
-        beacon.objectURL = 'https://de.wikipedia.org/wiki/Die_R%C3%BCckkehr_des_verlorenen_Sohnes_(Rembrandt)';
-        beacon.objectImageFile = 'assets/museum/imgs/rembrandt_sohn.jpg';
+        beacon.objectId = 'buetti1';
+        beacon.objectTitle = 'Hey babe';
+        beacon.objectPainter = 'Daniele Buetti';
+        beacon.objectArtStyle = '2013, 173 x 143 cm Tintestrahldruck aufgezogen und laminiert Im Holzrahmen mit Abstandleiste Rahmenfarbe weiss';
+        beacon.objectURL = 'https://kunst.mobiliar.ch/daniele-buetti/hey-babe';
+        beacon.objectImageFile = 'assets/museum/imgs/hey_babe.jpg';
         beacon.objectSoundFile = 'assets/museum/sounds/Rembrandt_Selbstbildnis_als_der_verlorene_ Sohn_im_Wirtshaus.mp3';
+        beacon.video = 'https://www.youtube.com/embed/Hq-Hn01E5k4';
       } else if (this.beaconScannerService.isIceBeacon(beacon)) {
-        beacon.objectId = 'klimt1';
-        beacon.objectTitle = 'Der Kuss';
-        beacon.objectPainter = 'Gustav Klimt';
-        beacon.objectArtStyle = 'Jugendstil';
-        beacon.objectURL = 'https://de.wikipedia.org/wiki/Der_Kuss_(Klimt)';
-        beacon.objectImageFile = 'assets/museum/imgs/klimt_der_kuss.jpg';
+        beacon.objectId = 'amiet1';
+        beacon.objectTitle = 'Blumenstilleben';
+        beacon.objectPainter = 'Cuno Amiet';
+        beacon.objectArtStyle = '1954, 38 x 46.5 cm Öl auf Pavatex';
+        beacon.objectURL = 'https://kunst.mobiliar.ch/cuno-amiet/blumenstilleben';
+        beacon.objectImageFile = 'assets/museum/imgs/blumenstilleben.jpg';
         beacon.objectSoundFile = '';
       } else if (this.beaconScannerService.isMintBeacon(beacon)) {
-        beacon.objectId = 'monet1';
-        beacon.objectTitle = 'Seerosenteich II';
-        beacon.objectPainter = 'Claude Monet';
-        beacon.objectArtStyle = 'Impressionismus';
-        beacon.objectURL = 'https://www.kunstkopie.ch/a/claude-monet/seerosenteich-ii.html';
-        beacon.objectImageFile = 'assets/museum/imgs/monet_seerosenteich.jpg';
+        beacon.objectId = 'fleury1';
+        beacon.objectTitle = 'Miracle';
+        beacon.objectPainter = 'Sylvie Fleury';
+        beacon.objectArtStyle = '2001, 12 x 100 x 5 cm Neon';
+        beacon.objectURL = 'https://kunst.mobiliar.ch/sylvie-fleury/miracle-0';
+        beacon.objectImageFile = 'assets/museum/imgs/miracle.jpg';
         beacon.objectSoundFile = '';
       }
       this.initializedBeaconsWithPaitingInformation = true;
@@ -137,14 +139,37 @@ export class HomePage {
   }
 
   showPaintingInfo(url: string): void {
-    this.iab.create(url);
+    const iabOptions: any = {
+      clearcache: 'yes',
+      clearsessioncache: 'yes',
+      hideurlbar: 'no',
+      location:'yes',
+      zoom:'yes'
+    };
+
+    this.iab.create(url, '_self', iabOptions);
   }
 
   stopAllSounds(): void {
-    this.stopPaintingInfo('rembrandt1');
-    this.stopPaintingInfo('klimt1');
-    this.stopPaintingInfo('monet1');
+    this.stopPaintingInfo('buetti1');
+    this.stopPaintingInfo('amiet1');
+    this.stopPaintingInfo('fleury1');
     this.playingInProgress = false;
+  }
+
+  showVideo(videoURL: string): void {
+    const iabOptions: any = {
+      clearcache: 'yes',
+      clearsessioncache: 'yes',
+      hideurlbar: 'no',
+      location:'yes',
+      zoom:'yes'
+    };
+    this.iab.create(videoURL, '_self', iabOptions);
+  }
+
+  getSecureVideoURL(videoURL: string): any {
+    return this.domSanitizer.bypassSecurityTrustResourceUrl(videoURL);
   }
 
   playPaintingInfo(id: string, soundFile: string): void {

@@ -3,7 +3,7 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Mobi Kunst Guide</ion-title>
+    <ion-title>Mobiliar Kunst Guide</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -13,11 +13,12 @@
     <img [src]="nearestBeacon.objectImageFile" style="width:100%;">
     <h2>{{nearestBeacon.objectTitle}}</h2>
     <p><b>Künstler:</b> {{nearestBeacon.objectPainter}}</p>
-    <p><b>Stil:</b> {{nearestBeacon.objectArtStyle}}</p>
+    <p><b>Info:</b> {{nearestBeacon.objectArtStyle}}</p>
     <button ion-button icon-start (click)="showPaintingInfo(nearestBeacon.objectURL)">
       <ion-icon name="paper"></ion-icon>
       Info lesen
     </button>
+    <!--
     <button ion-button icon-start (click)="playPaintingInfo(nearestBeacon.objectId, nearestBeacon.objectSoundFile)" *ngIf="nearestBeacon.objectSoundFile && !playingInProgress">
       <ion-icon name="play"></ion-icon>
       Info abspielen
@@ -26,10 +27,19 @@
       <ion-icon name="square"></ion-icon>
       Info stoppen
     </button>
+    -->
+
+    <!--<iframe width="100%" height="315" src="showVideo(nearestBeacon.video)" frameborder="0" allowfullscreen *ngIf="nearestBeacon.video"></iframe>-->
+
+    <button ion-button icon-start (click)="showVideo(nearestBeacon.video)" *ngIf="nearestBeacon.video">
+      <ion-icon name="videocam"></ion-icon>
+      Video öffnen
+    </button>
+
   </ng-container>
 
   <br/>
   <ng-template #noBaconFound>
-    Kein Objekt in der Nähe.
+    Kein Kunstwerk in unmittelbarer Nähe.
   </ng-template>
 </ion-content>
